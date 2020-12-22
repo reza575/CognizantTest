@@ -15,7 +15,7 @@ import retrofit2.Response
  */
 
 class InfoRepositoryDefault(private val apiService: ApiService) : InfoRepository{
-    override fun fetchNews( onResult: (result: Result<InfoModel>) -> Unit) {
+    override fun fetchInfo( onResult: (result: Result<InfoModel>) -> Unit) {
         //TODO
         onResult(Result.Loading)
         //TODO
@@ -34,7 +34,7 @@ class InfoRepositoryDefault(private val apiService: ApiService) : InfoRepository
 }
 
 interface InfoRepository {
-    fun fetchNews(onResult: (result: Result<InfoModel>) -> Unit)
+    fun fetchInfo(onResult: (result: Result<InfoModel>) -> Unit)
 }
 
 
