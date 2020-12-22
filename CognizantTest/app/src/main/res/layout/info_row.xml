@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="InfoBinding">
+
+        <variable
+            name="showInfo"
+            type="com.moeiny.reza.cognizanttest.data.model.uimodel.ShowInfoModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_newsrow_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/recycler_item_margin">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_newsrow_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/hor_margin"
+                    tools:text="@{showInfo.title}" />
+
+                <ImageView
+                    android:id="@+id/img_info"
+                    android:layout_width="@dimen/recycler_icon_size"
+                    android:layout_height="@dimen/recycler_icon_size"
+                    android:layout_below="@id/txt_title"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/hor_margin"
+                    android:scaleType="centerCrop"
+                    android:src="@{showInfo.imageHref}" />
+
+                <TextView
+                    android:id="@+id/txt_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_title"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="@dimen/hor_margin"
+                    android:layout_toLeftOf="@id/img_info"
+                    tools:text="@{showInfo.description}" />
+
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

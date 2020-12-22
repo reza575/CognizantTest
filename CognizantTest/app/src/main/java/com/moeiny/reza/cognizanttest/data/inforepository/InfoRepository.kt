@@ -1,7 +1,7 @@
 package com.moeiny.reza.cognizanttest.data.inforepository
 
 import com.moeiny.reza.cognizanttest.core.result.Result
-import com.moeiny.reza.cognizanttest.data.model.apimodel.Info
+import com.moeiny.reza.cognizanttest.data.model.apimodel.InfoModel
 import com.moeiny.reza.cognizanttest.data.retrofit.ApiService
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,16 +15,16 @@ import retrofit2.Response
  */
 
 class InfoRepositoryDefault(private val apiService: ApiService) : InfoRepository{
-    override fun fetchNews( onResult: (result: Result<Info>) -> Unit) {
+    override fun fetchNews( onResult: (result: Result<InfoModel>) -> Unit) {
         //TODO
         onResult(Result.Loading)
         //TODO
-        apiService.getInfo().enqueue(object :Callback<Info>{
-            override fun onFailure(call: Call<Info>, t: Throwable) {
+        apiService.getInfo().enqueue(object :Callback<InfoModel>{
+            override fun onFailure(call: Call<InfoModel>, t: Throwable) {
                 onResult(Result.Error(t))
             }
 
-            override fun onResponse(call: Call<Info>, response: Response<Info>) {
+            override fun onResponse(call: Call<InfoModel>, response: Response<InfoModel>) {
                 response.body()?.let {
                     onResult(Result.Success(it))
                 }
@@ -34,7 +34,7 @@ class InfoRepositoryDefault(private val apiService: ApiService) : InfoRepository
 }
 
 interface InfoRepository {
-    fun fetchNews(onResult: (result: Result<Info>) -> Unit)
+    fun fetchNews(onResult: (result: Result<InfoModel>) -> Unit)
 }
 
 
