@@ -9,6 +9,8 @@ import com.moeiny.reza.cognizanttest.core.result.Result
 
 class InfoViewModel(private val infoRepository: InfoRepository) : ViewModel() {
 
+    val titleLiveData = MutableLiveData<String>()
+
     val infoLiveData = MutableLiveData<List<ShowInfoModel>>()
 
     val loadingLiveData = MutableLiveData<Boolean>()
@@ -22,6 +24,7 @@ class InfoViewModel(private val infoRepository: InfoRepository) : ViewModel() {
     fun getAllInfo() {
         infoRepository.fetchInfo { result ->
             if (result is Result.Success) {
+                titleLiveData.postValue(result.data.title)
 
                 /**
                  * Map  Data from API model to UI Model
@@ -29,8 +32,8 @@ class InfoViewModel(private val infoRepository: InfoRepository) : ViewModel() {
                 val infoList = result.data.rows.map { info ->
                     ShowInfoModel(
                         title = info.title.orEmpty(),
-                        description = info.description?.orEmpty(),
-                        imageHref = info.imageHref?.orEmpty()
+                        description = info.description.orEmpty(),
+                        imageHref = info.imageHref.orEmpty()
                     )
                 }
                 infoLiveData.postValue(infoList)

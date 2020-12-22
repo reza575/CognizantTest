@@ -21,7 +21,7 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/rl_newsrow_header"
+                android:id="@+id/rl_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +32,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/hor_margin"
+                    android:textColor="@color/purple_700"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     tools:text="@{showInfo.title}" />
 
                 <ImageView
@@ -52,6 +55,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_margin="@dimen/hor_margin"
                     android:layout_toLeftOf="@id/img_info"
+                    android:textSize="16sp"
                     tools:text="@{showInfo.description}" />
 
 
