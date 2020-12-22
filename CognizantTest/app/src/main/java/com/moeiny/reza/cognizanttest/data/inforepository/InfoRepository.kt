@@ -14,12 +14,12 @@ import retrofit2.Response
  * 3- error: if any error happen during loading data this error will be handel by any predefined decision.
  */
 
-class InfoRepositoryDefault(private val apiService: ApiService) : InfoRepository{
-    override fun fetchInfo( onResult: (result: Result<InfoModel>) -> Unit) {
+class InfoRepositoryDefault(private val apiService: ApiService) : InfoRepository {
+    override fun fetchInfo(onResult: (result: Result<InfoModel>) -> Unit) {
         //TODO
         onResult(Result.Loading)
         //TODO
-        apiService.getInfo().enqueue(object :Callback<InfoModel>{
+        apiService.getInfo().enqueue(object : Callback<InfoModel> {
             override fun onFailure(call: Call<InfoModel>, t: Throwable) {
                 onResult(Result.Error(t))
             }

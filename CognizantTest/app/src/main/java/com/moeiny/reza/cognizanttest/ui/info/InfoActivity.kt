@@ -27,21 +27,31 @@ class InfoActivity : AppCompatActivity() {
          * function setUpVies: Assign parameters and values
          */
         setUpViews()
+
         /**
          * SetUp all the livedata parameters to start their job(Observing data)
          */
         setupLiveData()
+
+        /**
+         * Refreshing recycler view by reloading data from API
+         */
+        mBinding.refresh.setOnClickListener {
+            viewModel.getAllInfo()
+        }
     }
 
     private fun setUpViews() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = ViewModelProvider(this, MyViewModelFactory( application as AndroidApplication)).get(
-            InfoViewModel::class.java )
+        viewModel =
+            ViewModelProvider(this, MyViewModelFactory(application as AndroidApplication)).get(
+                InfoViewModel::class.java
+            )
         viewModel.getAllInfo()
         mBinding.recyclerView.adapter = adapter
     }
 
-    private fun setupLiveData(){
+    private fun setupLiveData() {
         /**
          * observing the title of API to update actionbar title after any changing
          */
@@ -52,8 +62,10 @@ class InfoActivity : AppCompatActivity() {
         /**
          * observing the list of rows of API to update data on recycler view after any changing
          */
-        viewModel.infoLiveData.observe(this, Observer { infoList->
-            mBinding.loadingPanel.visibility = if(infoList.isNotEmpty()) View.GONE else View.VISIBLE
+        viewModel.infoLiveData.observe(this, Observer { infoList ->
+            mBinding.loadingPanel.visibility =
+                if (infoList.isNotEmpty()) View.GONE else View.VISIBLE
+            mBinding.refresh.visibility = if (infoList.isNotEmpty()) View.VISIBLE else View.GONE
             adapter.infoList = infoList
         })
 
@@ -61,14 +73,15 @@ class InfoActivity : AppCompatActivity() {
          * observing data fetching from API to update loading state
          */
         viewModel.loadingLiveData.observe(this, Observer {
-            mBinding.loadingPanel.visibility = if(it) View.VISIBLE else View.GONE
+            mBinding.loadingPanel.visibility = if (it) View.VISIBLE else View.GONE
+            mBinding.refresh.visibility = if (it) View.GONE else View.VISIBLE
         })
 
         /**
          * observing for any error during data fetching from API to update error state
          */
         viewModel.errorLiveData.observe(this, Observer {
-            Toast.makeText(this,"error on loading Data", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "error on loading Data", Toast.LENGTH_SHORT).show()
         })
     }
 }

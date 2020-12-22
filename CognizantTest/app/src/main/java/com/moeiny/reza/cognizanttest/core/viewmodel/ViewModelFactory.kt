@@ -18,7 +18,6 @@ class MyViewModelFactory(private val application: AndroidApplication) :
 
         return if (modelClass == InfoViewModel::class.java )
             InfoViewModel(application.infoRepository) as T
-
         else
             throw IllegalArgumentException()
     }

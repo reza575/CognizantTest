@@ -20,12 +20,10 @@ class InfoViewModel(private val infoRepository: InfoRepository) : ViewModel() {
     /**
      * getAllData function:fetching data from repository by considering 3 state of onSuccess,onError,onLoading
      */
-
     fun getAllInfo() {
         infoRepository.fetchInfo { result ->
             if (result is Result.Success) {
                 titleLiveData.postValue(result.data.title)
-
                 /**
                  * Map  Data from API model to UI Model
                  */

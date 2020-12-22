@@ -8,9 +8,9 @@ import com.moeiny.reza.cognizanttest.data.retrofit.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class AndroidApplication: Application() {
+class AndroidApplication : Application() {
 
-    val infoRepository : InfoRepository by lazy {
+    val infoRepository: InfoRepository by lazy {
         InfoRepositoryDefault(apiService)
     }
 
@@ -18,14 +18,14 @@ class AndroidApplication: Application() {
         retrofit.create(ApiService::class.java)
     }
 
-    private val retrofit:Retrofit by lazy {
+    private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
     override fun onCreate() {
         super.onCreate()
-
     }
 }
