@@ -7,7 +7,7 @@ A sample test app
 
 ## Getting Started
 
-This project is done in Kotlin with respectful to Clean Architecture
+This project is done in Kotlin 
 
 ### Prerequisites
 
